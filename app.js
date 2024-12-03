@@ -85,7 +85,9 @@ app.post("/login", async (req, res) => {
     const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, {
         expiresIn: "1h",
     });
-    res.json({ token });
+    res.json({ 
+        message: `Login efetuado pelo usuário ${user.username}`,
+        jwt: token, });
 });
 
 app.get("/alunos", authenticateJWT, (req, res) => {
